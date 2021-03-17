@@ -32,9 +32,9 @@ public class ScoreCardConfig {
                 .collect(Collectors.toList());
     }
 
-    public boolean isNewsEnabled(){
-        return Boolean.parseBoolean(environment.getProperty("scorecard.news-enabled"));
-    }
+//    public boolean isNewsEnabled(){
+//        return Boolean.parseBoolean(environment.getProperty("scorecard.news-enabled"));
+//    }
 
     public boolean isSportConfigured(String sportName){
         List<SportConfig> sportConfigList = this.getConfiguredSports();

@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+}
+
+.event-emission-running {
+    background-color: red;
+    font-weight: bold;
+}
+
+.event-emission-not-running {
+    background-color: aqua;
+    font-weight: bold;
+}
+
+table > td {
+    border: 1px solid black;
+}
