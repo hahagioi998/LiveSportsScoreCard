@@ -22,11 +22,11 @@ import java.util.List;
  * @EnableBinding is an annotation from the spring cloud module that will indicate the framework to analyze the EventSource interface,
  * provide an actual implementation for the bean of the interface type as well as for the abstract methods (methods without body).
  *
- * For example, if you have a plain simply class and you want to make available in your app context a bean of that type, you need to annotate
+ * For example, if there is a plain simply class and you want to make available in your app context a bean of that type, you need to annotate
  * a method with the annotation @Bean. You need to return whatever type of object you want but configure it first or initialize it.
  * This can be accomplished also with the @Component annotation, which will indicate the framework to create an instance of the class
  * and inject into the app context.
- * In this case, I inject an instance of ErrorInterceptor and indicate the framework to use when the user enters a URI that doesnt exist
+ * In this case, an instance of ErrorInterceptor is injected and indicate the framework to use when the user enters a URI that doesnt exist
  * or that throws 404.
  *
  */

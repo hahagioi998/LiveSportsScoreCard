@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * '@Controller' annotation will instruct the framework to use it to process user requests from the screen.
@@ -23,6 +25,17 @@ public class EventGeneratorConfigController extends ScoreCardConfig {
 
     @Autowired
     private EventSource eventSource;
+
+    @RequestMapping(value = { "/"})
+    public RedirectView root(){
+        return new RedirectView("home");
+    }
+
+
+    @RequestMapping(value = { "/home"})
+    public ModelAndView home(){
+        return getHomeModelAndView();
+    }
     /*
      * The below 2 methods will be used to start and stop, in general, the event generation process.
      */

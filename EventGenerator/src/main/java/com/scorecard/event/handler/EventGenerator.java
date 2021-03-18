@@ -94,10 +94,6 @@ public class EventGenerator {
                 .forEach(threadEvent -> threadEvent.getPaused().set(false));
     }
 
-//    public void setNews(List<News> news) {
-//
-//    }
-
     public void setSportMapGames(Map<String, List<Game>> sportMapGames) {
         this.sportMapGames = sportMapGames;
     }
