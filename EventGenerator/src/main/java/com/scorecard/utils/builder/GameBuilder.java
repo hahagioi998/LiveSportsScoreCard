@@ -18,41 +18,41 @@ public class GameBuilder {
     private List<Event> events;
     private AtomicBoolean done;
 
-    public static GameBuilder getInstance(){
+    public static GameBuilder getInstance() {
         return new GameBuilder();
     }
 
-    public GameBuilder id(Long id){
+    public GameBuilder id(Long id) {
         this.id = id;
         return this;
     }
 
-    public GameBuilder sport(Sports sport){
+    public GameBuilder sport(Sports sport) {
         this.sport = sport;
         return this;
     }
 
-    public GameBuilder teams(String[] teams){
+    public GameBuilder teams(String[] teams) {
         this.teams = teams;
         return this;
     }
 
-    public GameBuilder information(String information){
+    public GameBuilder information(String information) {
         this.information = information;
         return this;
     }
 
-    public GameBuilder startDate(Date startDate){
+    public GameBuilder startDate(Date startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public GameBuilder events(List<Event> events){
+    public GameBuilder events(List<Event> events) {
         this.events = events;
         return this;
     }
 
-    public Game build(){
+    public Game build() {
         return new Game(this.id, this.sport, this.teams, this.information, this.startDate, this.events);
     }
 }

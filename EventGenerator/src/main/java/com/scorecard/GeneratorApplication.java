@@ -8,13 +8,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class GeneratorApplication extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(GeneratorApplication.class);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(GeneratorApplication.class);
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(GeneratorApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GeneratorApplication.class, args);
+    }
 
 }

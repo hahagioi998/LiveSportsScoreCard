@@ -25,18 +25,14 @@ public class ScoreCardConfig {
                 .build();
     }
 
-    public List<SportConfig> getConfiguredSports()  {
+    public List<SportConfig> getConfiguredSports() {
         String configuredSports[] = environment.getProperty("scorecard.sports-configured").split(" ");
         return Arrays.stream(configuredSports)
                 .map(this::getSportConfig)
                 .collect(Collectors.toList());
     }
 
-//    public boolean isNewsEnabled(){
-//        return Boolean.parseBoolean(environment.getProperty("scorecard.news-enabled"));
-//    }
-
-    public boolean isSportConfigured(String sportName){
+    public boolean isSportConfigured(String sportName) {
         List<SportConfig> sportConfigList = this.getConfiguredSports();
         return sportConfigList.stream()
                 .filter(sportConfig -> sportConfig.getName().equals(sportName))

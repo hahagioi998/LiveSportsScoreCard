@@ -43,7 +43,7 @@ public class ThreadEventGenerator extends Thread {
     private final boolean WITH_EVENTS = true;
     private final boolean WITH_OUT_EVENTS = false;
 
-    public ThreadEventGenerator(SportConfig sportConfig, EventSource eventSource){
+    public ThreadEventGenerator(SportConfig sportConfig, EventSource eventSource) {
         this.sportConfig = sportConfig;
         this.eventSource = eventSource;
         this.paused = new AtomicBoolean(false);
@@ -54,11 +54,11 @@ public class ThreadEventGenerator extends Thread {
     public void run() {
         EventSourceUtils sourceUtils = new EventSourceUtils(eventSource);
         // Check If The Thread Is Running
-        while(this.getRunning().get()){
+        while (this.getRunning().get()) {
             // Check If The Thread Is Paused
-            if(!this.paused.get()) {
+            if (!this.paused.get()) {
                 // Check If We Already Emit The Initial Data From The Game
-                if(!gameEvent.getDone().get()){
+                if (!gameEvent.getDone().get()) {
                     try {
 
                         // We change the value of the "done" property to true so that we are awared on next loop that the data was already sent.
@@ -80,7 +80,7 @@ public class ThreadEventGenerator extends Thread {
                      * already sent.
                      */
                     Event eventData = gameEvent.getEvents().stream().filter(event -> !event.getDone().get()).findFirst().orElse(null);
-                    if(Objects.nonNull(eventData)){
+                    if (Objects.nonNull(eventData)) {
                         String eventDataStr = null;
                         try {
                             eventData.getDone().set(true);

@@ -24,19 +24,19 @@ import java.util.stream.Collectors;
 public class EventGenerator {
     private List<SportConfig> sportConfigList;
     private Map<String, List<ThreadEventGenerator>> threadEventMap;
-//    private List<News> news;
+    //    private List<News> news;
     private Map<String, List<Game>> sportMapGames;
     private EventSource eventSource;
     private boolean eventStatus = false;
 
-    public EventGenerator(List<SportConfig> sportConfigList, EventSource eventSource){
+    public EventGenerator(List<SportConfig> sportConfigList, EventSource eventSource) {
         this.sportConfigList = sportConfigList;
         this.eventSource = eventSource;
         this.sportMapGames = new HashMap<String, List<Game>>();
     }
 
     // This process triggers the code that starts the threads which publish to the queues.
-    public void initEventGeneration(){
+    public void initEventGeneration() {
         this.threadEventMap = this.sportConfigList.stream().collect(Collectors.toMap(SportConfig::getName, sportConfig -> {
             return sportMapGames.get(sportConfig.getName()).stream().map(
                     game -> {
@@ -50,14 +50,14 @@ public class EventGenerator {
     }
 
     // This method stops the threads that emit value to queues.
-    public void stopEventGeneration(){
+    public void stopEventGeneration() {
         this.threadEventMap.entrySet()
                 .forEach(entry -> {
                     entry.getValue()
                             .forEach(eventThread -> {
                                 try {
                                     eventThread.getRunning().set(false);
-                                } catch (Exception ex){
+                                } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }
                             });
@@ -73,7 +73,7 @@ public class EventGenerator {
     }
 
     // This will let us know what is the status of all the threads corresponding to a certain sports.
-    public boolean getSportStatus(String sportName){
+    public boolean getSportStatus(String sportName) {
         return Objects.nonNull(this.threadEventMap) && Objects.nonNull(this.threadEventMap.get(sportName)) && this.threadEventMap.get(sportName)
                 .stream()
                 .allMatch(threadEvent -> {
@@ -84,12 +84,12 @@ public class EventGenerator {
 
     // This method will allow us to pause all the threads corresponding to a certain sport.
     // So if we use it, all the threads corresponding to soccer will be paused and we wont emit values.
-    public void pauseSportEventGeneration(String sportName){
+    public void pauseSportEventGeneration(String sportName) {
         this.threadEventMap.get(sportName)
                 .forEach(threadEvent -> threadEvent.getPaused().set(true));
     }
 
-    public void unPauseSportEventGeneration(String sportName){
+    public void unPauseSportEventGeneration(String sportName) {
         this.threadEventMap.get(sportName)
                 .forEach(threadEvent -> threadEvent.getPaused().set(false));
     }

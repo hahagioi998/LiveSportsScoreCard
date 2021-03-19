@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@JsonIgnoreProperties(value = { "done" })
+@JsonIgnoreProperties(value = {"done"})
 public class Event {
 
     private Long id;

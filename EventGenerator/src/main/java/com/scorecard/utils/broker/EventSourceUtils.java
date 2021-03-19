@@ -9,14 +9,15 @@ import org.json.JSONObject;
 
 public class EventSourceUtils {
     private EventSource eventSource;
-    public EventSourceUtils(EventSource eventSource){
+
+    public EventSourceUtils(EventSource eventSource) {
         this.eventSource = eventSource;
     }
 
     public String serializeForMessage(Object t, boolean withEvents) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        if(!withEvents) {
+        if (!withEvents) {
             String temporalStr = objectMapper.writeValueAsString(t);
             JSONObject temporalJson = new JSONObject(temporalStr);
             temporalJson.remove("events");
@@ -26,10 +27,10 @@ public class EventSourceUtils {
         return objectMapper.writeValueAsString(t);
     }
 
-    public void sendEvent(String eventData, Sports sport){
-        if(sport == Sports.SOCCER) {
+    public void sendEvent(String eventData, Sports sport) {
+        if (sport == Sports.SOCCER) {
             this.eventSource.soccer().send(MessageBuilder.withPayload(eventData).build());
-        } else if(sport == Sports.BASKETBALL){
+        } else if (sport == Sports.BASKETBALL) {
             this.eventSource.basketball().send(MessageBuilder.withPayload(eventData).build());
         } else {
             this.eventSource.hockey().send(MessageBuilder.withPayload(eventData).build());

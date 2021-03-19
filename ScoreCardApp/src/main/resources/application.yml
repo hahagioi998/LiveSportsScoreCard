@@ -1,0 +1,23 @@
+server:
+  port: 1111
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test
+  cloud:
+    stream:
+      default:
+        contentType: application/json
+      bindings:
+        soccer-input:
+          destination: soccer
+        hockey-input:
+          destination: hockey
+        basketball-input:
+          destination: basketball
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

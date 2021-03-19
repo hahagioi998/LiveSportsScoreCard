@@ -11,41 +11,41 @@ public class SportConfigBuilder {
     private long mininimumSleepInterval;
     private long maximumSleepInterval;
 
-    public static SportConfigBuilder getInstance(){
+    public static SportConfigBuilder getInstance() {
         return new SportConfigBuilder();
     }
 
-    public SportConfigBuilder name(String name){
+    public SportConfigBuilder name(String name) {
         this.name = name;
         return this;
     }
 
-    public SportConfigBuilder aliveTime(long aliveTime){
+    public SportConfigBuilder aliveTime(long aliveTime) {
         this.aliveTime = aliveTime;
         return this;
     }
 
-    public SportConfigBuilder mininimumSleepInterval(long mininimumSleepInterval){
+    public SportConfigBuilder mininimumSleepInterval(long mininimumSleepInterval) {
         this.mininimumSleepInterval = mininimumSleepInterval;
         return this;
     }
 
-    public SportConfigBuilder maximumSleepInterval(long maximumSleepInterval){
+    public SportConfigBuilder maximumSleepInterval(long maximumSleepInterval) {
         this.maximumSleepInterval = maximumSleepInterval;
         return this;
     }
 
     public SportConfig build() {
 
-        if(this.mininimumSleepInterval >= this.maximumSleepInterval){
+        if (this.mininimumSleepInterval >= this.maximumSleepInterval) {
             throw new RuntimeException("Sleep Internal Range Was Not Configured Correctly.");
         }
 
-        if(this.aliveTime <= 0) {
+        if (this.aliveTime <= 0) {
             throw new RuntimeException("Alive Time Was Not Configured Correctly.");
         }
 
-        if(Objects.isNull(this.name)){
+        if (Objects.isNull(this.name)) {
             throw new RuntimeException("Sport Name Was Not Configured Correctly.");
         }
 

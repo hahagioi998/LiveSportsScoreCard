@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@JsonIgnoreProperties(value = { "done" })
+@JsonIgnoreProperties(value = {"done"})
 public class Game {
 
     private Long id;

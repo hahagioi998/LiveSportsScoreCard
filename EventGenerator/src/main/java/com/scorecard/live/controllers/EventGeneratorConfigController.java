@@ -16,7 +16,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * '@Controller' annotation will instruct the framework to use it to process user requests from the screen.
- *
  */
 @Controller
 public class EventGeneratorConfigController extends ScoreCardConfig {
@@ -26,16 +25,17 @@ public class EventGeneratorConfigController extends ScoreCardConfig {
     @Autowired
     private EventSource eventSource;
 
-    @RequestMapping(value = { "/"})
-    public RedirectView root(){
+    @RequestMapping(value = {"/"})
+    public RedirectView root() {
         return new RedirectView("home");
     }
 
 
-    @RequestMapping(value = { "/home"})
-    public ModelAndView home(){
+    @RequestMapping(value = {"/home"})
+    public ModelAndView home() {
         return getHomeModelAndView();
     }
+
     /*
      * The below 2 methods will be used to start and stop, in general, the event generation process.
      */
@@ -50,8 +50,6 @@ public class EventGeneratorConfigController extends ScoreCardConfig {
         this.eventGenerator.stopEventGeneration();
         return getHomeModelAndView();
     }
-
-
 
     /*
      * The following 2 methods can be used to pause / unpause the threads corresponding to a certain sport.
@@ -80,9 +78,9 @@ public class EventGeneratorConfigController extends ScoreCardConfig {
         JSONObject dataEvent = new JSONObject();
         dataEvent.put("information", information);
         String eventData = dataEvent.toString();
-        if(queueToPublish.equals("soccer")) {
+        if (queueToPublish.equals("soccer")) {
             this.eventSource.soccer().send(MessageBuilder.withPayload(eventData).build());
-        } else if(queueToPublish.equals("hockey")) {
+        } else if (queueToPublish.equals("hockey")) {
             this.eventSource.hockey().send(MessageBuilder.withPayload(eventData).build());
         } else {
             this.eventSource.basketball().send(MessageBuilder.withPayload(eventData).build());
@@ -94,7 +92,7 @@ public class EventGeneratorConfigController extends ScoreCardConfig {
      * This method will be used to pass to the JSP page the corresponding variables so that we know is the data generation is active
      * and which sports are configured and which of them are currently active (which threads are emitting values)
      */
-    private ModelAndView getHomeModelAndView(){
+    private ModelAndView getHomeModelAndView() {
         ModelAndView homeView = new ModelAndView("home");
 
         homeView.addObject("soccerConfigured", this.isSportConfigured(Sports.SOCCER.getName()));

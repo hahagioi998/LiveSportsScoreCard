@@ -1,6 +1,7 @@
 package com.scorecard.config;
 
 //import com.scorecard.config.handler.ErrorInterceptor;
+
 import com.scorecard.config.rabbitmq.channel.EventSource;
 import com.scorecard.event.handler.EventGenerator;
 import com.scorecard.utils.ScoreCardConfig;
@@ -41,7 +42,7 @@ public class ApplicationConfig extends ScoreCardConfig implements WebMvcConfigur
 //    private ErrorInterceptor errorInterceptor;
 
     @Bean
-    public EventGenerator eventGenerator(){
+    public EventGenerator eventGenerator() {
         List<SportConfig> configuredSports = this.getConfiguredSports();
         return new EventGenerator(configuredSports, eventSource);
     }
