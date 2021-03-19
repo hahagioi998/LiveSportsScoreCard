@@ -21,13 +21,7 @@ public class ScoreCardController {
 
         Map<String, List<String>> sportOptionsMap = new HashMap<String, List<String>>();
 
-        games.forEach(game -> {
-            sportOptionsMap.merge(game.getSport().name(), new ArrayList<String>(Arrays.asList(game.getTeams().split("-"))), (k , v) -> {
-                k.addAll(v);
-                return k;
-            });
-        });
-
+       
         return sportOptionsMap;
     }
 }
